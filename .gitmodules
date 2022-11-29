@@ -7,6 +7,9 @@
 [submodule "vendor/tree-sitter-commonlisp/test/sly"]
 	path =vendor/tree-sitter-commonlisp/test/sly
 	url = https://github.com/joaotavora/sly.git
+[submodule "vendor/tree-sitter-toml/tree-sitter"]
+	path =vendor/tree-sitter-toml/tree-sitter
+	url = https://github.com/ikatyang/tree-sitter.git
 
 
 
