@@ -1,3 +1,13 @@
 [submodule "vendor/tree-sitter-bash/examples/bash-it"]
 	path = vendor/tree-sitter-bash/examples/bash-it
 	url = https://github.com/Bash-it/bash-it.git
+[submodule "vendor/tree-sitter-commonlisp/test/Petalisp"]
+	path =vendor/tree-sitter-commonlisp/test/Petalisp
+	url = https://github.com/marcoheisig/Petalisp.git
+[submodule "vendor/tree-sitter-commonlisp/test/sly"]
+	path =vendor/tree-sitter-commonlisp/test/sly
+	url = https://github.com/joaotavora/sly.git
+
+
+
+	
