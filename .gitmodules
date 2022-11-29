@@ -1,0 +1,3 @@
+[submodule "vendor/tree-sitter-bash/examples/bash-it"]
+	path = vendor/tree-sitter-bash/examples/bash-it
+	url = https://github.com/Bash-it/bash-it.git
