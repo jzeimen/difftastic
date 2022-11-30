@@ -23,6 +23,7 @@ mod constants;
 pub mod diff;
 pub mod display;
 pub mod files;
+pub mod json;
 mod line_parser;
 pub mod lines;
 pub mod option_types;
@@ -42,6 +43,7 @@ use diff::dijkstra::ExceededGraphLimit;
 use display::context::opposite_positions;
 use files::{guess_content, ProbableFileKind};
 use mimalloc::MiMalloc;
+use option_types::DEFAULT_GRAPH_LIMIT;
 use parse::guess_language::{guess, language_name};
 
 /// The global allocator used by difftastic.
@@ -51,7 +53,7 @@ use parse::guess_language::{guess, language_name};
 #[global_allocator]
 static GLOBAL: MiMalloc = MiMalloc;
 
-// use crate::option_types::FileArgument;
+use crate::option_types::FileArgument;
 use diff::sliders::fix_all_sliders;
 use std::{env, path::Path};
 pub use summary::{DiffResult, FileContent};
@@ -65,11 +67,27 @@ use crate::{
 
 extern crate pretty_env_logger;
 
+pub fn get_file_diffs(lhs: &[u8], rhs: &[u8]) -> json::File {
+    let diff = diff_file_content(
+        &"n/a",
+        &"n/a",
+        &FileArgument::DevNull,
+        &FileArgument::DevNull,
+        lhs,
+        rhs,
+        8,
+        DEFAULT_GRAPH_LIMIT,
+        1_000_000,
+        Some(crate::parse::guess_language::Language::Html),
+    );
+    json::to_file(diff)
+}
+
 pub fn diff_file_content(
     lhs_display_path: &str,
     rhs_display_path: &str,
-    _lhs_path: &crate::option_types::FileArgument,
-    rhs_path: &crate::option_types::FileArgument,
+    _lhs_path: &FileArgument,
+    rhs_path: &FileArgument,
     lhs_bytes: &[u8],
     rhs_bytes: &[u8],
     tab_width: usize,
@@ -108,9 +126,9 @@ pub fn diff_file_content(
     }
 
     let (guess_src, guess_path) = match rhs_path {
-        crate::option_types::FileArgument::NamedPath(_) => (&rhs_src, Path::new(&rhs_display_path)),
-        crate::option_types::FileArgument::Stdin => (&rhs_src, Path::new(&lhs_display_path)),
-        crate::option_types::FileArgument::DevNull => (&lhs_src, Path::new(&lhs_display_path)),
+        FileArgument::NamedPath(_) => (&rhs_src, Path::new(&rhs_display_path)),
+        FileArgument::Stdin => (&rhs_src, Path::new(&lhs_display_path)),
+        FileArgument::DevNull => (&lhs_src, Path::new(&lhs_display_path)),
     };
 
     let language = language_override.or_else(|| guess(guess_path, guess_src));

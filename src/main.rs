@@ -41,6 +41,7 @@ use std::path::Path;
 use typed_arena::Arena;
 
 use difftastic::{parse::syntax::init_all_info, parse::tree_sitter_parser as tsp};
+use std::ffi::OsStr;
 
 extern crate pretty_env_logger;
 
@@ -61,6 +62,17 @@ fn reset_sigpipe() {
 fn main() {
     pretty_env_logger::init_timed();
     reset_sigpipe();
+
+    // Testing code to remove.
+    // let lf = &FileArgument::from_path_argument(OsStr::new(
+    //     "/Users/joseph.z@nylas.com/dev/pii-scrubber/nikeemails/1vr5mylhhn8vwwhrv6ki4l4vztzl.html",
+    // ));
+    // let rf = &FileArgument::from_path_argument(OsStr::new(
+    //     "/Users/joseph.z@nylas.com/dev/pii-scrubber/nikeemails/2kg1m82t6lptctwd36pi3xmib.html",
+    // ));
+
+    // let (lff, rff) = read_files_or_die(lf, rf, true);
+    // let _f = difftastic::get_file_diffs(&lff, &rff);
 
     match options::parse_args() {
         Mode::DumpTreeSitter {
