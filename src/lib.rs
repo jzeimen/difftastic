@@ -67,7 +67,7 @@ use crate::{
 
 extern crate pretty_env_logger;
 
-pub fn get_file_diffs(lhs: &[u8], rhs: &[u8]) -> json::File {
+pub fn get_file_diffs(lhs: &[u8], rhs: &[u8]) -> String {
     let diff = diff_file_content(
         &"n/a",
         &"n/a",
@@ -80,7 +80,7 @@ pub fn get_file_diffs(lhs: &[u8], rhs: &[u8]) -> json::File {
         1_000_000,
         Some(crate::parse::guess_language::Language::Html),
     );
-    json::to_file(diff)
+    serde_json::to_string(&json::to_file(diff)).expect("failed to serialize file")
 }
 
 pub fn diff_file_content(

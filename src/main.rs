@@ -41,7 +41,6 @@ use std::path::Path;
 use typed_arena::Arena;
 
 use difftastic::{parse::syntax::init_all_info, parse::tree_sitter_parser as tsp};
-use std::ffi::OsStr;
 
 extern crate pretty_env_logger;
 
