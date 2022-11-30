@@ -241,7 +241,7 @@ mod tests {
     use crate::{
         diff::changes::ChangeKind,
         diff::graph::Edge::*,
-        options::DEFAULT_GRAPH_LIMIT,
+        option_types::DEFAULT_GRAPH_LIMIT,
         positions::SingleLineSpan,
         syntax::{init_all_info, AtomKind},
     };

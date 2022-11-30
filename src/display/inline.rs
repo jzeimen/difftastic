@@ -6,7 +6,7 @@ use crate::{
     display::hunks::Hunk,
     display::style::{self, apply_colors, apply_line_number_color},
     lines::{format_line_num, split_on_newlines, MaxLine},
-    options::DisplayOptions,
+    option_types::DisplayOptions,
     parse::{guess_language::Language, syntax::MatchedPos},
 };
 

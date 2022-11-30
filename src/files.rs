@@ -10,7 +10,7 @@ use std::{
 use rustc_hash::FxHashSet;
 use walkdir::WalkDir;
 
-use crate::options::FileArgument;
+use crate::option_types::FileArgument;
 
 pub fn read_files_or_die(
     lhs_path: &FileArgument,

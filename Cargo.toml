@@ -71,8 +71,14 @@ lto = "thin"
 name = "difft"
 path = "src/main.rs"
 
+[lib]
+name = "difftastic"
+path = "src/lib.rs"
+doctest = false
+
 [features]
 
 [patch.crates-io]
 # https://github.com/mbrubeck/tree_magic/pull/13 hasn't been merged yet.
 tree_magic_mini = { git = 'https://github.com/Wilfred/tree_magic', branch = 'fix-panic-for-empty-strings' }
+

@@ -16,13 +16,12 @@ use crate::{
         BackgroundColor,
     },
     lines::{codepoint_len, format_line_num, split_on_newlines, LineNumber},
-    options::{DisplayMode, DisplayOptions},
-    parse::{
-        guess_language::Language,
-        syntax::{zip_pad_shorter, MatchedPos},
-    },
+    option_types::{DisplayMode, DisplayOptions},
+    parse::guess_language::Language,
     positions::SingleLineSpan,
 };
+
+use crate::parse::syntax::{zip_pad_shorter, MatchedPos};
 
 const SPACER: &str = " ";
 

@@ -3,7 +3,7 @@
 use crate::{
     constants::Side,
     lines::{byte_len, split_on_newlines, LineNumber},
-    options::DisplayOptions,
+    option_types::DisplayOptions,
     parse::{
         guess_language::Language,
         syntax::{AtomKind, MatchKind, MatchedPos, TokenKind},
